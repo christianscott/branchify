@@ -3,7 +3,7 @@
 Attempts to create a valid branch name from arguments.
 
 ```bash
-$ branchify -ns me -nsSep # -sep . foo bar baz
+$ branchify -ns me -nsSep @ -sep - foo bar baz
 me#foo.bar.baz
 ```
 
