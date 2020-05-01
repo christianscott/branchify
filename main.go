@@ -8,18 +8,18 @@ import (
 
 func main() {
 	sep := flag.String("sep", "-", "seperator used to join branch name parts")
-	namespace := flag.String("namespace", "", "prefixed to the branch name to namespace it")
-	namespaceSep := flag.String("nsSep", ":", "seperator used to join the namespace and the branch name")
+	ns := flag.String("ns", "", "prefixed to the branch name to namespace it")
+	nsSep := flag.String("nsSep", "@", "seperator used to join the namespace and the branch name")
 
 	flag.Parse()
 
-	fmt.Println(branchify(flag.Args(), *sep, *namespace, *namespaceSep))
+	fmt.Println(branchify(flag.Args(), *sep, *ns, *nsSep))
 }
 
-func branchify(args []string, sep, namespace, namespaceSep string) string {
+func branchify(args []string, sep, ns, nsSep string) string {
 	slugified := strings.ToLower(strings.ReplaceAll(strings.Join(args, sep), " ", sep))
-	if namespace == "" {
+	if ns == "" {
 		return slugified
 	}
-	return namespace + namespaceSep + slugified
+	return ns + nsSep + slugified
 }

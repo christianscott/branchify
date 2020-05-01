@@ -27,15 +27,15 @@ func TestBranchifyBasic(t *testing.T) {
 func TestBranchifyWithNamespace(t *testing.T) {
 	var tests = []struct {
 		args      []string
-		namespace string
+		ns string
 		expected  string
 	}{
-		{args: []string{}, namespace: "t", expected: "t:"},
-		{args: []string{"one"}, namespace: "t", expected: "t:one"},
-		{args: []string{"one", "two"}, namespace: "t", expected: "t:one-two"},
+		{args: []string{}, ns: "t", expected: "t:"},
+		{args: []string{"one"}, ns: "t", expected: "t:one"},
+		{args: []string{"one", "two"}, ns: "t", expected: "t:one-two"},
 	}
 	for _, tt := range tests {
-		got := branchify(tt.args, "-", tt.namespace, ":")
+		got := branchify(tt.args, "-", tt.ns, ":")
 		if got != tt.expected {
 			t.Errorf("got %s, want %s", got, tt.expected)
 		}
