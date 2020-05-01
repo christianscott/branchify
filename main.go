@@ -17,7 +17,7 @@ func main() {
 }
 
 func branchify(args []string, sep, namespace, namespaceSep string) string {
-	slugified := strings.ToLower(strings.ReplaceAll(strings.Join(flag.Args(), sep), " ", sep))
+	slugified := strings.ToLower(strings.ReplaceAll(strings.Join(args, sep), " ", sep))
 	if namespace == "" {
 		return slugified
 	}
