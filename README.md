@@ -1,8 +1,8 @@
 # branchify
 
-Attempts to create a valid branch name from arguments.
+Command line utility for quickly creating branch names.
 
-# Usage
+## Usage
 
 ```
 Usage of branchify:
@@ -14,28 +14,42 @@ Usage of branchify:
         seperator used to join branch name parts (default "-")
 ```
 
-Uses args to create a nice branch name. Can be namespaced for uniqueness
+## Examples
+
+Simple usage
 
 ```bash
-$ branchify -ns me -nsSep @ -sep - foo bar baz
-me#foo.bar.baz
+$ branchify foo bar baz
+foo-bar-baz
 ```
 
-It will strip out some illegal chars
+Using all the options
+
+```bash
+$ branchify -ns me -nsSep ! -sep . foo bar baz
+me!foo.bar.baz
+```
+
+Stripping out illegal chars (won't catch everything)
 
 ```bash
 $ branchify foo:bar:baz
 foobarbaz
 ```
 
-I use it as part of a git alias to quickly create branches namespaced with my github username
+As part of a git alias
 
-```ini
+```bash
+$ cat ~/.gitconfig
 [alias]
   cbc="!f() { local parts=$@; local branch=$(branchify -ns christianscott \"${parts[@]}\"); git checkout -b $branch; }; f"
+$ git cbc foo bar baz
+christianscott@foo-bar-baz
 ```
 
-You can install it using `go get`
+## Installation
+
+Installable via `go get`
 
 ```bash
 $ go get christianscott/branchify
